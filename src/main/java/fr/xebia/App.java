@@ -1,24 +1,29 @@
 package fr.xebia;
 
-import static java.time.LocalDate.now;
+import static java.lang.Long.parseLong;
 import net.codestory.http.WebServer;
 import net.codestory.http.payload.Payload;
 
 public class App {
 
     public static void main( String[] args ) {
+
+        UserDB userDB = new UserDB();
+        SlotDB slotDB = new SlotDB();
+
         new WebServer().
                 configure(routes -> routes
-                        .get("/users/1", new XkeUser("Jérémie"))
+                                .get("/users/:id", (context, id) -> userDB.findById(parseLong(id)))
 
-                        .url("/slots")
-                            .get((context) -> {
-                                return new Slot("Dagger 2", "Super slot sur la nouvelle version de Dagger !", new XkeUser("Pierre-Jean"), now());
-                            })
-                            .post((context) -> {
-                                new Slot("Dagger 2", "Super slot sur la nouvelle version de Dagger !", new XkeUser("Pierre-Jean"), now());
-                                return Payload.created();
-                            })
+                                .url("/slots")
+                                    .get((context) -> {
+                                        return slotDB.all();
+                                    })
+                                    .post((context) -> {
+                                        Slot slot = context.extract(Slot.class);
+                                        slotDB.create(slot);
+                                        return Payload.created();
+                                    })
 
                 ).start();
     }
