@@ -5,13 +5,8 @@ import java.util.List;
 
 public class SlotService {
 
-    private final SlotDB slotDB;
-    private final SlotMailer slotMailer;
-
-    public SlotService(SlotDB slotDB, SlotMailer slotMailer) {
-        this.slotDB = slotDB;
-        this.slotMailer = slotMailer;
-    }
+    private final SlotDB slotDB = new SlotDB();
+    private final SlotMailer slotMailer = new SlotMailer();
 
     public List<Slot> all() {
         return slotDB.all();
