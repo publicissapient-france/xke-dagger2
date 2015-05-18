@@ -1,12 +1,15 @@
 package fr.xebia;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import net.codestory.http.security.User;
 
 public class XkeUser implements User {
 
     private final String login;
 
-    public XkeUser(String login) {
+    @JsonCreator
+    public XkeUser(@JsonProperty("login") String login) {
         this.login = login;
     }
 

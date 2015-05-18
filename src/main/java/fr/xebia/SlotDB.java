@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class SlotDB {
 
     private static final Map<Long, Slot> slots = new HashMap<>();
-    private static final AtomicLong idsGenerator = new AtomicLong(0L);
+    private static final AtomicLong idsGenerator = new AtomicLong(1L);
 
     public List<Slot> all() {
         return new ArrayList<>(slots.values());

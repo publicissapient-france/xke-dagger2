@@ -9,7 +9,7 @@ public class App {
     public static void main( String[] args ) {
 
         UserDB userDB = new UserDB();
-        SlotDB slotDB = new SlotDB();
+        SlotService slotService = new SlotService(new SlotDB(), new SlotMailer());
 
         new WebServer().
                 configure(routes -> routes
@@ -17,11 +17,14 @@ public class App {
 
                                 .url("/slots")
                                     .get((context) -> {
-                                        return slotDB.all();
+                                        return slotService.all();
                                     })
                                     .post((context) -> {
-                                        Slot slot = context.extract(Slot.class);
-                                        slotDB.create(slot);
+                                        try {
+                                            slotService.create(context.extract(Slot.class));
+                                        } catch (IllegalArgumentException e) {
+                                            return new Payload("text/plain", e.getMessage(), 400);
+                                        }
                                         return Payload.created();
                                     })
 
