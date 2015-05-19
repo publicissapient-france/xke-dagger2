@@ -9,7 +9,11 @@ import net.codestory.http.payload.Payload;
 @Prefix("/slots")
 public class SlotResource {
 
-    private final SlotService slotService = new SlotService();
+    private final SlotService slotService;
+
+    public SlotResource(SlotService slotService) {
+        this.slotService = slotService;
+    }
 
     @Get
     public List<Slot> all() {
