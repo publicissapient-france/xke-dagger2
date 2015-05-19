@@ -6,7 +6,11 @@ import net.codestory.http.annotations.Prefix;
 @Prefix("/users")
 public class UserResource {
 
-    private final UserDB userDB = new UserDB();
+    private final UserDB userDB;
+
+    public UserResource(UserDB userDB) {
+        this.userDB = userDB;
+    }
 
     @Get("/:id")
     public XkeUser findById(Long id) {

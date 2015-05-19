@@ -7,8 +7,8 @@ public class App {
     public static void main( String[] args ) {
         new WebServer().
                 configure(routes -> routes
-                                .add(new UserResource())
-                                .add(new SlotResource())
+                                .add(new UserResource(new UserDB()))
+                                .add(new SlotResource(new SlotService(new SlotDB(), new SlotMailer())))
                 ).start();
     }
 }
