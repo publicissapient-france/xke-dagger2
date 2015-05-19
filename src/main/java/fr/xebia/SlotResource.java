@@ -6,10 +6,12 @@ import net.codestory.http.annotations.Post;
 import net.codestory.http.annotations.Prefix;
 import net.codestory.http.payload.Payload;
 
+import javax.inject.Inject;
+
 @Prefix("/slots")
 public class SlotResource {
 
-    private final SlotService slotService = new SlotService();
+    @Inject SlotService slotService;
 
     @Get
     public List<Slot> all() {
