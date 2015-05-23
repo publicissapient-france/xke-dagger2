@@ -28,16 +28,31 @@ public class App {
     }
 
     @Module(
-            injects = App.class
+            injects = App.class,
+            includes = {UserModule.class, SlotModule.class}
     )
     static class XkeModule {
 
-        @Provides @Singleton SlotDB providesSlotDB(){
-            return new SlotDB();
-        }
+    }
+
+    @Module(
+            library=true
+    )
+    static class UserModule {
 
         @Provides @Singleton UserDB providesUserDB(){
             return new UserDB();
+        }
+
+    }
+
+    @Module(
+            library=true
+    )
+    static class SlotModule {
+
+        @Provides @Singleton SlotDB providesSlotDB(){
+            return new SlotDB();
         }
 
         @Provides SlotMailer providesSlotMailer(){
@@ -45,4 +60,5 @@ public class App {
         }
 
     }
+
 }
