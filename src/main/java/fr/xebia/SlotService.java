@@ -2,11 +2,18 @@ package fr.xebia;
 
 import static java.time.LocalDate.now;
 import java.util.List;
+import javax.inject.Inject;
 
 public class SlotService {
 
-    private final SlotDB slotDB = new SlotDB();
-    private final SlotMailer slotMailer = new SlotMailer();
+    private final SlotDB slotDB;
+    private final SlotMailer slotMailer;
+
+    @Inject
+    public SlotService(SlotDB slotDB, SlotMailer slotMailer) {
+        this.slotDB = slotDB;
+        this.slotMailer = slotMailer;
+    }
 
     public List<Slot> all() {
         return slotDB.all();

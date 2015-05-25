@@ -2,7 +2,9 @@ package fr.xebia;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.inject.Singleton;
 
+@Singleton
 public class UserDB {
 
     private static final Map<Long, XkeUser> users = new HashMap<>();
