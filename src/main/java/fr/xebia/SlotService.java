@@ -7,8 +7,14 @@ import java.util.List;
 
 public class SlotService {
 
-    @Inject SlotDB slotDB;
-    @Inject SlotMailer slotMailer;
+    private final SlotDB slotDB;
+    private final SlotMailer slotMailer;
+
+    @Inject
+    public SlotService(SlotDB slotDB, SlotMailer slotMailer) {
+        this.slotDB = slotDB;
+        this.slotMailer = slotMailer;
+    }
 
     public List<Slot> all() {
         return slotDB.all();

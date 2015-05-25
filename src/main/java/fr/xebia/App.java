@@ -10,8 +10,14 @@ import javax.inject.Singleton;
 
 public class App {
 
-    @Inject SlotResource slotResource;
-    @Inject UserResource userResource;
+    private final SlotResource slotResource;
+    private final UserResource userResource;
+
+    @Inject
+    public App(SlotResource slotResource, UserResource userResource) {
+        this.slotResource = slotResource;
+        this.userResource = userResource;
+    }
 
     public static void main( String[] args ) {
         ObjectGraph objectGraph = ObjectGraph.create(new XkeModule());

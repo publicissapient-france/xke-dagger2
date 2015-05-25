@@ -8,8 +8,12 @@ import javax.inject.Inject;
 @Prefix("/users")
 public class UserResource {
 
+    private final UserDB userDB;
+
     @Inject
-    UserDB userDB;
+    public UserResource(UserDB userDB) {
+        this.userDB = userDB;
+    }
 
     @Get("/:id")
     public XkeUser findById(Long id) {

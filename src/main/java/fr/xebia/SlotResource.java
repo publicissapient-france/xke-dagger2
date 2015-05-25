@@ -11,7 +11,12 @@ import javax.inject.Inject;
 @Prefix("/slots")
 public class SlotResource {
 
-    @Inject SlotService slotService;
+    private final SlotService slotService;
+
+    @Inject
+    public SlotResource(SlotService slotService) {
+        this.slotService = slotService;
+    }
 
     @Get
     public List<Slot> all() {
