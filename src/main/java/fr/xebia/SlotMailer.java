@@ -14,4 +14,10 @@ public class SlotMailer {
                 )
         );
     }
+
+    public void send(XkeUser user) {
+        System.out.println(
+                format("Welcome to XkeApp %s", user.login())
+        );
+    }
 }
