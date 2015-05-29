@@ -6,7 +6,7 @@ import java.util.List;
 public class SlotService {
 
     private final SlotDB slotDB = new SlotDB();
-    private final SlotMailer slotMailer = new SlotMailer();
+    private final Mailer mailer = new Mailer();
 
     public List<Slot> all() {
         return slotDB.all();
@@ -26,6 +26,6 @@ public class SlotService {
             throw new IllegalArgumentException("Slot's creationDate should not be null or in the past");
         }
         slotDB.create(slot);
-        slotMailer.send(slot);
+        mailer.send(slot);
     }
 }

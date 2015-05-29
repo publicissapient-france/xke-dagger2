@@ -2,7 +2,7 @@ package fr.xebia;
 
 import static java.lang.String.format;
 
-public class SlotMailer {
+public class Mailer {
 
     public void send(Slot slot) {
         System.out.println(
