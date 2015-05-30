@@ -2,7 +2,7 @@ package fr.xebia;
 
 import static java.lang.String.format;
 
-public class SlotMailer {
+public class Mailer {
 
     public void send(Slot slot) {
         System.out.println(
@@ -12,6 +12,12 @@ public class SlotMailer {
                         slot.speaker,
                         slot.creationDate
                 )
+        );
+    }
+
+    public void send(XkeUser user) {
+        System.out.println(
+            format("Welcome to XkeApp %s", user.login())
         );
     }
 }

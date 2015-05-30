@@ -8,12 +8,12 @@ import java.util.List;
 public class SlotService {
 
     private final SlotDB slotDB;
-    private final SlotMailer slotMailer;
+    private final Mailer mailer;
 
     @Inject
-    public SlotService(SlotDB slotDB, SlotMailer slotMailer) {
+    public SlotService(SlotDB slotDB, Mailer mailer) {
         this.slotDB = slotDB;
-        this.slotMailer = slotMailer;
+        this.mailer = mailer;
     }
 
     public List<Slot> all() {
@@ -34,6 +34,6 @@ public class SlotService {
             throw new IllegalArgumentException("Slot's creationDate should not be null or in the past");
         }
         slotDB.create(slot);
-        slotMailer.send(slot);
+        mailer.send(slot);
     }
 }

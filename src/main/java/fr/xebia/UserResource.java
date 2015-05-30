@@ -9,14 +9,17 @@ import javax.inject.Inject;
 public class UserResource {
 
     private final UserDB userDB;
-
+    private final Mailer mailer;
     @Inject
-    public UserResource(UserDB userDB) {
+    public UserResource(UserDB userDB, Mailer mailer) {
         this.userDB = userDB;
+        this.mailer = mailer;
     }
 
     @Get("/:id")
     public XkeUser findById(Long id) {
-        return userDB.findById(id);
+        XkeUser user = userDB.findById(id);
+        mailer.send(user);
+        return user;
     }
 }

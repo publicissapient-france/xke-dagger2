@@ -50,6 +50,11 @@ public class App {
             return new UserDB();
         }
 
+        @Provides
+        Mailer providesMailer(){
+            return new Mailer();
+        }
+
     }
 
     @Module(
@@ -61,8 +66,9 @@ public class App {
             return new SlotDB();
         }
 
-        @Provides SlotMailer providesSlotMailer(){
-            return new SlotMailer();
+        @Provides
+        Mailer providesMailer(){
+            return new Mailer();
         }
 
     }
